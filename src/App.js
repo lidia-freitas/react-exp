@@ -1,24 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import SourceBox from './components/SourceBox/index';
+import TargetBox from './components/TargetBox';
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+        <div className="main-container">
+            <div className="targets-container">
+                <TargetBox type="odd"/>
+                <TargetBox type="even"/>
+            </div>
+
+            <div className="source-container">
+                <SourceBox/>
+            </div>
         </div>
     );
 }

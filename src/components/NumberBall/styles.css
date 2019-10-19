@@ -1,0 +1,9 @@
+.number-ball {
+    width: 2rem;
+    height: 2rem;
+    display: block;
+    line-height: 2rem;
+    text-align: center;
+    border-radius: 50%;
+    background: blue;
+}
