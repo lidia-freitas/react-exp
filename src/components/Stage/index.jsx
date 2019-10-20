@@ -1,27 +1,33 @@
 import React from 'react';
-import './styles.css';
 import { useDrop } from 'react-dnd';
+
+import './styles.css';
 import NumberItem from '../NumberItem';
 
-export default function Stage(props) {
+const Stage = ({ id, accepts, droppedNumbers, onDrop }) => {
+
     const [{ isOver, canDrop }, drop] = useDrop({
-        accept: props.accept,
-        drop: props.onDrop,
-        collect: monitor => ({
+        accept: accepts,
+        collect: (monitor) => ({
             isOver: monitor.isOver(),
             canDrop: monitor.canDrop(),
         }),
+        drop: onDrop
     });
+
 
     return (
         <div ref={drop} className="stage-box">
-            {props.numbers.map((item, index) =>
+            {droppedNumbers.map((item, index) =>
                 <NumberItem
                     type={item.type}
                     value={item.value}
                     sourceId={item.sourceId}
                     key={index}
-                />)}
+                />
+            )}
         </div>
     );
-}
+};
+
+export default Stage;
