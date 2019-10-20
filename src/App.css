@@ -8,22 +8,13 @@
     background: #1c1c37;
 }
 
-.targets-container {
+.stages-container {
     width: 80%;
     height: 70%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background: red;
-}
-
-.source-container {
-    width: 80%;
-    height: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: green;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
 
 
