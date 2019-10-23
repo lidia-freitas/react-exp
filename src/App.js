@@ -1,83 +1,50 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import update from 'immutability-helper';
 
 import './App.css';
-import NumberTypes from './types/NumberTypes';
+import NumberType from './types/NumberType';
+import StageType from './types/StageType';
 import Stage from './components/Stage';
-import NumberItem from './components/NumberItem';
 
 function App() {
-    const [numbers, setNumbers] = useState([
-        { type: NumberTypes.EVEN, value: 0, sourceId: 0, removed: false },
-        { type: NumberTypes.ODD, value: 1, sourceId: 0, removed: false },
-        { type: NumberTypes.EVEN, value: 2, sourceId: 0, removed: false },
-        { type: NumberTypes.ODD, value: 3, sourceId: 0, removed: false },
-        { type: NumberTypes.EVEN, value: 4, sourceId: 0, removed: false },
-        { type: NumberTypes.ODD, value: 5, sourceId: 0, removed: false },
-        { type: NumberTypes.EVEN, value: 6, sourceId: 0, removed: false },
-        { type: NumberTypes.ODD, value: 7, sourceId: 0, removed: false },
-        { type: NumberTypes.EVEN, value: 8, sourceId: 0, removed: false },
-        { type: NumberTypes.ODD, value: 9, sourceId: 0, removed: false },
-        { type: NumberTypes.EVEN, value: 10, sourceId: 0, removed: false },
-        { type: NumberTypes.ODD, value: 11, sourceId: 0, removed: false },
-        { type: NumberTypes.EVEN, value: 12, sourceId: 0, removed: false }
-    ]);
+    const stages = [
+        {
+            id: 1,
+            accepts: [NumberType.NUMBER, NumberType.EVEN, NumberType.ODD],
+            type: StageType.SOURCE,
+            droppedNumbers: [
+                { id: 1, type: NumberType.EVEN, originType: StageType.SOURCE, value: 0 },
+                { id: 2, type: NumberType.ODD, originType: StageType.SOURCE, value: 1 },
+                { id: 3, type: NumberType.EVEN, originType: StageType.SOURCE, value: 2 },
+                { id: 4, type: NumberType.ODD, originType: StageType.SOURCE, value: 3 },
+                { id: 5, type: NumberType.EVEN, originType: StageType.SOURCE, value: 4 },
+                { id: 6, type: NumberType.ODD, originType: StageType.SOURCE, value: 5 },
+                { id: 7, type: NumberType.EVEN, originType: StageType.SOURCE, value: 6 },
+                { id: 8, type: NumberType.ODD, originType: StageType.SOURCE, value: 7 },
+                { id: 9, type: NumberType.EVEN, originType: StageType.SOURCE, value: 8 },
+                { id: 10, type: NumberType.ODD, originType: StageType.SOURCE, value: 9 },
+                { id: 11, type: NumberType.EVEN, originType: StageType.SOURCE, value: 10 },
+                { id: 12, type: NumberType.ODD, originType: StageType.SOURCE, value: 11 },
+                { id: 13, type: NumberType.EVEN, originType: StageType.SOURCE, value: 12 }
+            ]
+        },
+        { id: 2, accepts: [NumberType.NUMBER, NumberType.EVEN], type: StageType.TARGET, droppedNumbers: [] },
+        { id: 3, accepts: [NumberType.NUMBER, NumberType.ODD], type: StageType.TARGET, droppedNumbers: [] },
+    ];
 
-    const [stages, setStages] = useState([
-        { id: 1, accepts: [NumberTypes.EVEN], droppedNumbers: [] },
-        { id: 2, accepts: [NumberTypes.ODD], droppedNumbers: [] }
-    ]);
-
-    const dropHandler = (item, stageIndex) => {
-        const numberIndex = numbers.findIndex(x => x.value === item.value);
-
-        setNumbers(
-            update(numbers, {
-                [numberIndex]: {
-                    removed: { $set: true }
-                }
-            }));
-
-        setStages(
-            update(stages, {
-                [stageIndex]: {
-                    droppedNumbers: {
-                        $push: [item]
-                    }
-                }
-            }));
-
-        return {
-            targetId: stages[stageIndex].id
-        }
-    };
 
     return (
         <div className="main-container">
             <DndProvider backend={HTML5Backend}>
                 <div className="stages-container">
-                    <div className="stage-box">
-                        {numbers.map((item, index) =>
-                            <NumberItem
-                                type={item.type}
-                                value={item.value}
-                                removed={item.removed}
-                                sourceId={item.sourceId}
-                                key={index}
-                            />
-                        )}
-                    </div>
-
-                    {stages.map((item, index) =>
+                    {stages.map(item =>
                         <Stage
-                            id={item.id}
                             accepts={item.accepts}
+                            type={item.type}
                             droppedNumbers={item.droppedNumbers}
-                            onDrop={(item) => dropHandler(item, index)}
-                            key={index}
-                        />
+                            key={item.id}>
+                        </Stage>
                     )}
                 </div>
             </DndProvider>

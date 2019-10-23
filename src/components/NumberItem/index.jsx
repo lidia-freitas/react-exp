@@ -3,23 +3,23 @@ import { useDrag } from 'react-dnd';
 
 import './styles.css';
 
-const NumberItem = ({ type, value, sourceId, removed }) => {
-
-    const [{ isDragging, display }, drag] = useDrag({
-        item: { type, value, sourceId },
+const NumberItem = ({ id, type, originType, value, removeItem }) => {
+    const [{ isDragging }, drag] = useDrag({
+        item: { id, type, originType, value },
         collect: (monitor) => ({
-            isDragging: monitor.isDragging(),
-            display: removed ? 'none' : 'initial'
+            isDragging: monitor.isDragging()
         }),
         end: (item, monitor) => {
-            if(monitor.didDrop()){
+
+            if (monitor.didDrop()) {
+                removeItem(item);
             }
         }
     });
 
     return (
-        <span ref={drag} className="number-item" style={{display}}>
-             {removed ? <s>{value}</s> : value}
+        <span ref={drag} className="number-item">
+             {value}
         </span>
     )
 };
