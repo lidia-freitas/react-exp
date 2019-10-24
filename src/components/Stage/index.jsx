@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDrop } from 'react-dnd';
 import update from 'immutability-helper';
 
@@ -6,9 +6,17 @@ import './styles.css';
 import NumberType from '../../types/NumberType';
 import StageType from '../../types/StageType';
 import NumberItem from '../NumberItem';
+import localStorageHelper from '../../helpers/local-storage-helper';
 
-const Stage = ({ accepts, type, droppedNumbers }) => {
+const Stage = ({ id, accepts, type, droppedNumbers }) => {
     const [numbers, setNumbers] = useState(droppedNumbers);
+
+    useEffect(() => {
+        const stageList = localStorageHelper.getState();
+        stageList.find(item => item.id === id).droppedNumbers = numbers;
+
+        localStorageHelper.setState(stageList);
+    }, [id, numbers]);
 
     const [{ isOver, canDrop }, drop] = useDrop({
         accept: accepts,
