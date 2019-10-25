@@ -1,9 +1,13 @@
 .number-item {
-    width: 2rem;
-    height: 2rem;
+    width: 4rem;
+    height: 4rem;
     display: block;
-    line-height: 2rem;
+    line-height: 4rem;
     text-align: center;
     border-radius: 50%;
-    background: blue;
+    color: #ffe5e5;
+    font-size: 1.4rem;
+    cursor: move;
+    box-shadow: 14px 14px 20px -8px rgba(252, 82, 94, 0.60);
+    background: linear-gradient(135deg, rgba(253, 32, 157, 1) 0%, rgba(252, 82, 94, 1) 36%, rgba(249, 119, 67, 1) 95%, rgba(249, 119, 67, 1) 100%);
 }

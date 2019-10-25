@@ -5,16 +5,17 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background: #1c1c37;
+    background: linear-gradient(135deg, rgba(98, 39, 116, 1) 0%, rgba(98, 39, 116, 1) 27%, rgba(197, 51, 100, 1) 99%, rgba(197, 51, 100, 1) 100%);
 }
 
 .stages-container {
-    width: 80%;
-    height: 70%;
+    width: 75%;
+    height: 85%;
+    padding: 1rem;
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 40px;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1.5fr;
 }
 
 

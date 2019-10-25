@@ -61,6 +61,11 @@ const Stage = ({ id, accepts, type, droppedNumbers }) => {
                     key={item.id}
                 />
             )}
+            {type === StageType.TARGET ?
+                <div className="label">
+                    <span>{accepts.includes(NumberType.EVEN ) ? 'Pares' : 'Ímpares'}</span>
+                </div>
+            : ''}
         </div>
     );
 };

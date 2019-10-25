@@ -8,9 +8,7 @@ body {
     padding: 0;
     height: 100%;
     background: #f8f8f8;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+    font-family: 'Big Shoulders Text', cursive;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -30,4 +28,5 @@ code {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }

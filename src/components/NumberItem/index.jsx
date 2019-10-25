@@ -18,7 +18,7 @@ const NumberItem = ({ id, type, originType, value, removeItem }) => {
     });
 
     return (
-        <span ref={drag} className="number-item">
+        <span ref={drag} className="number-item odd-number">
              {value}
         </span>
     )

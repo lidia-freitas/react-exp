@@ -4,11 +4,38 @@
     grid-template-rows: repeat(3, 1fr);
     align-items: center;
     justify-items: center;
-    background: #222e64;
+    border-radius: 0.8rem;
+    background: #f5eff6;
+    position: relative;
+    padding: 1.5rem 1rem;
+    box-shadow: 14px 20px 17px -9px rgba(80, 43, 102, 1);
 }
 
 .stage-box:nth-child(1) {
     grid-column: span 2;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 1fr;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr 1fr;
+}
+
+.stage-box .label {
+    width: 10rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1.5rem;
+    color: #ffffff;
+    box-shadow: 17px 11px 20px -3px rgba(80, 43, 102, 1);
+    background: linear-gradient(135deg, rgba(9, 216, 202, 1) 0%, rgba(2, 196, 226, 1) 46%, rgba(4, 166, 247, 1) 99%, rgba(4, 166, 247, 1) 100%);
+}
+
+.stage-box .label span {
+    font-weight: bold;
+    color: #085a75;
+    font-size: 1.3rem;
 }
