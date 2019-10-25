@@ -24,6 +24,9 @@ const Stage = ({ id, accepts, type, droppedNumbers }) => {
             isOver: monitor.isOver(),
             canDrop: monitor.canDrop(),
         }),
+        canDrop: (item, monitor) => {
+            return item.originId !== id;
+        },
         drop: (item) => insertItem(item)
     });
 
@@ -35,6 +38,7 @@ const Stage = ({ id, accepts, type, droppedNumbers }) => {
                 $push: [{
                     ...item,
                     type: item.originType === StageType.SOURCE ? NumberType.NUMBER : valueType,
+                    originId: id,
                     originType: type
                 }]
             }));
@@ -56,6 +60,7 @@ const Stage = ({ id, accepts, type, droppedNumbers }) => {
                     id={item.id}
                     type={item.type}
                     originType={item.originType}
+                    originId={item.originId}
                     value={item.value}
                     removeItem={(item) => removeItem(item)}
                     key={item.id}
@@ -63,9 +68,9 @@ const Stage = ({ id, accepts, type, droppedNumbers }) => {
             )}
             {type === StageType.TARGET ?
                 <div className="label">
-                    <span>{accepts.includes(NumberType.EVEN ) ? 'Pares' : 'Ímpares'}</span>
+                    <span>{accepts.includes(NumberType.EVEN) ? 'Pares' : 'Ímpares'}</span>
                 </div>
-            : ''}
+                : ''}
         </div>
     );
 };

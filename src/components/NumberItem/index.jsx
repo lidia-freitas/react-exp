@@ -3,9 +3,9 @@ import { useDrag } from 'react-dnd';
 
 import './styles.css';
 
-const NumberItem = ({ id, type, originType, value, removeItem }) => {
+const NumberItem = ({ id, type, originType, originId, value, removeItem }) => {
     const [{ isDragging }, drag] = useDrag({
-        item: { id, type, originType, value },
+        item: { id, type, originType, originId, value },
         collect: (monitor) => ({
             isDragging: monitor.isDragging()
         }),
